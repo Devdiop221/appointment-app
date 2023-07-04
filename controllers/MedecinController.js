@@ -71,16 +71,21 @@ const MedecinController = {
   },
 
   delete:(req, res) => {
-    const id = req.params.id;
-    try{
-        Medecin.findByIdAndDelete(id);
-        return res
-        .status(204)
-        .send();
-        }
-        catch(err){
-             throw new Error("Error when deleting a medecin");
-            };
+
+      const id = req.params.id;
+    try {
+      Medecin.deleteOne({ _id: id })
+        .then((medecin) =>
+          res.status(200).json({
+            success: true,
+            message: `User with ID ${id} deleted`,
+            data: medecin,
+          })
+        )
+        .catch((err) => res.status(500).json({ message: err.message }));
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 

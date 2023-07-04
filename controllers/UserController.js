@@ -47,7 +47,13 @@ const UserController = {
     console.log("delete", id);
     try {
       User.deleteOne({ _id: id })
-        .then((user) => res.status(200).json(user))
+        .then((user) =>
+          res.status(200).json({
+            success: true,
+            message: `User with ID ${id} deleted`,
+            data: user,
+          })
+        )
         .catch((err) => res.status(500).json({ message: err.message }));
     } catch (err) {
       console.log(err);
