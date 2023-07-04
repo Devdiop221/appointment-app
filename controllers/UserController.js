@@ -1,5 +1,4 @@
-const User = require('../models/User')
-
+const User = require("../models/User");
 
 const UserController = {
   // create user
@@ -7,20 +6,38 @@ const UserController = {
     const user = new User(req.body);
     user
       .save()
-      .then((user) => res.status(201).json(user))
+      .then((user) =>
+        res.status(201).json({
+          entity: user,
+          success: true,
+          message: `User has been created`,
+        })
+      )
       .catch((err) => res.status(400).json({ message: err.message }));
   },
 
   // read user
   read: function (req, res) {
     User.find()
-      .then((users) => res.status(200).json(users))
+      .then((users) =>
+        res.status(200).json({
+          entity: users,
+          success: true,
+          message: `Users fetched successfully`,
+        })
+      )
       .catch((err) => res.status(500).json({ message: err.message }));
   },
   getByID: (req, res) => {
-     const id = req.params.id;
+    const id = req.params.id;
     User.findById(id)
-      .then((users) => res.status(200).json(users))
+      .then((users) =>
+        res.status(200).json({
+          entity: users,
+          success: true,
+          message: "User found",
+        })
+      )
       .catch((err) => res.status(500).json({ message: err.message }));
   },
 
@@ -36,7 +53,13 @@ const UserController = {
     if (req.body.password) userDataToUpdate.password = req.body.password;
     return new Promise((resolve, reject) => {
       User.findOneAndUpdate({ _id: id }, userDataToUpdate, { new: true })
-        .then((user) => res.status(200).json(user))
+        .then((user) =>
+          res.status(200).json({
+            entity: user,
+            success: true,
+            message: "User updated successfully",
+          })
+        )
         .catch((err) => res.status(500).json({ message: err.message }));
     });
   },
@@ -49,9 +72,9 @@ const UserController = {
       User.deleteOne({ _id: id })
         .then((user) =>
           res.status(200).json({
+            entity: user,
             success: true,
             message: `User with ID ${id} deleted`,
-            data: user,
           })
         )
         .catch((err) => res.status(500).json({ message: err.message }));

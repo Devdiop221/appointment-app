@@ -5,20 +5,26 @@ const MedecinController = {
     try {
       const medecins = await Medecin.find();
       return res.status(201).json({
+        entity: medecins,
         success: true,
         message: "medecins fetched successfully",
-        data: medecins,
       });
     } catch (err) {
       console.log("Error fetching all the medecins");
-      throw new Error("Internal Server error");
+      throw new Error("Error fetching all the medecins");
     }
   },
 
   getByID: (req, res) => {
-   const id = req.params.id;
+    const id = req.params.id;
     Medecin.findById(id)
-      .then((medecin) => res.status(200).json(medecin))
+      .then((medecin) =>
+        res.status(200).json({
+          entity: medecin,
+          success: true,
+          message: "Medecin found",
+        })
+      )
       .catch((err) => res.status(500).json({ message: err.message }));
   },
 
@@ -28,14 +34,14 @@ const MedecinController = {
       .save()
       .then(() =>
         res.status(201).json({
+          entity: medecin,
           success: true,
           message: "The medecin has been created",
-          data: medecin,
         })
       )
-      .catch((err) =>
-        console.log(`An error occurred while saving the medecin ${err}`)
-      );
+      .catch((err) => {
+        throw new Error(`An error occurred while saving the medecin ${err}`);
+      });
   },
 
   Update: (req, res) => {
@@ -60,9 +66,9 @@ const MedecinController = {
         .then((medecin) => {
           resolve(
             res.status(200).json({
+              entity: medecin,
               success: true,
               message: "Medecin updated successfully!",
-              data: medecin,
             })
           );
         })
@@ -70,23 +76,22 @@ const MedecinController = {
     });
   },
 
-  delete:(req, res) => {
-
-      const id = req.params.id;
+  delete: (req, res) => {
+    const id = req.params.id;
     try {
       Medecin.deleteOne({ _id: id })
         .then((medecin) =>
           res.status(200).json({
+            entity: medecin,
             success: true,
             message: `User with ID ${id} deleted`,
-            data: medecin,
           })
         )
         .catch((err) => res.status(500).json({ message: err.message }));
     } catch (err) {
       console.log(err);
     }
-  }
+  },
 };
 
 module.exports = MedecinController;
