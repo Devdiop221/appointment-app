@@ -29,12 +29,12 @@ const medecinSchema = new mongoose.Schema({
   },
   disponibilité: [
     {
-      jourSemaine: Date,
-      heureDebut: Date,
-      heureFin: Date,
+      jourSemaine: String,
+      heureDebut: String,
+      heureFin: String,
     },
   ],
-  servicesIds: [{ type: String }],
+  servicesIds: [{ type: String ,ref: "Service" }],
 });
 
 const Medecin = mongoose.model("Medecin", medecinSchema);
