@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const UserController = require("./controllers/UserController");
 const MedecinController = require("./controllers/MedecinController");
 const AppointmentController = require("./controllers/AppointmentController");
+const ServiceController = require("./controllers/ServiceController");
 
 const app = express();
 app.use(express.json());
@@ -61,9 +62,10 @@ app.delete('/medecins/:id', MedecinController.delete);
 
 
 
+// Appoointment
 
 
-// Appointment
+// Post an appointment
 app.post('/appointments',AppointmentController.createAppointment);
 
 // Get all appointment
@@ -77,3 +79,22 @@ app.put('/appointments/:id',AppointmentController.updateAppointment);
 
 // delete a appointment
 app.delete('/appointments/:id',AppointmentController.deleteAppointment);
+
+
+// Service
+
+
+// POst a service
+app.post('/services',ServiceController.createService);
+
+// Get all services
+app.get('/services',ServiceController.getAllServices);
+
+// get service by id
+app.get('/services/:id',ServiceController.getServiceById);
+
+// update a service
+app.put('/services/:id',ServiceController.updateService);
+
+// delete a service
+app.delete('/services/:id',ServiceController.deleteService);

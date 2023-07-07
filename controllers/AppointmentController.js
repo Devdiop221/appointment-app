@@ -42,9 +42,9 @@ const AppointmentController = {
   updateAppointment: (req, res) => {
     const id = req.params.id;
     let appointmentDataToUpdate = {};
-    if (req.body.Date) appointmentDataToUpdate = req.body.Date;
-    if (req.body.heure) appointmentDataToUpdate = req.body.heure;
-    if (req.body.status) appointmentDataToUpdate = req.body.status;
+    if (req.body.Date) appointmentDataToUpdate.Date = req.body.Date;
+    if (req.body.heure) appointmentDataToUpdate.heure = req.body.heure;
+    if (req.body.status) appointmentDataToUpdate.status = req.body.status;
     return new Promise((resolve, reject) => {
       Appointment.findOneAndUpdate({ _id: id }, appointmentDataToUpdate, {
         new: true,
