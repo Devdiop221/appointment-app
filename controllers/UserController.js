@@ -16,6 +16,28 @@ const UserController = {
       .catch((err) => res.status(400).json({ message: err.message }));
   },
 
+  // Login User
+  loginUser : async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (user.password !== password) {
+      return res.status(401).json({ message: "Wrong password" });
+    }
+
+    res.status(200).json({ message: "Successful connection" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occurred during user login" });
+  }
+},
+
   // read user
   read: function (req, res) {
     User.find()

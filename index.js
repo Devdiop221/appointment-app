@@ -4,6 +4,7 @@ const UserController = require("./controllers/UserController");
 const MedecinController = require("./controllers/MedecinController");
 const AppointmentController = require("./controllers/AppointmentController");
 const ServiceController = require("./controllers/ServiceController");
+const AvailabilityController = require("./controllers/AvailabilityController");
 
 const app = express();
 app.use(express.json());
@@ -38,6 +39,9 @@ app.put("/users/:id", UserController.update);
 
 // delete user
 app.delete("/users/:id", UserController.remove);
+
+// login User
+app.patch("/login", UserController.loginUser);
 
 
 
@@ -84,7 +88,7 @@ app.delete('/appointments/:id',AppointmentController.deleteAppointment);
 // Service
 
 
-// POst a service
+// Post a service
 app.post('/services',ServiceController.createService);
 
 // Get all services
@@ -98,3 +102,23 @@ app.put('/services/:id',ServiceController.updateService);
 
 // delete a service
 app.delete('/services/:id',ServiceController.deleteService);
+
+
+// Availability
+
+// Post an availability
+app.post('/availabilities',AvailabilityController.createAvailability);
+
+// Get all availabilities
+app.get('/availabilities',AvailabilityController.getAllAvailibilities);
+
+// Get availability by id
+app.get('/availabilities/:id',AvailabilityController.getAvailabilityById);
+
+// update an availability
+app.put('/availabilities/:id',AvailabilityController.updateAvailability);
+
+// Delete an availability
+app.delete('/availabilities/:id',AvailabilityController.deleteAvailibility);
+
+

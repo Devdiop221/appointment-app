@@ -49,8 +49,8 @@ const MedecinController = {
     let medecinDataToUpdate = {};
     if (req.body.nom) medecinDataToUpdate.nom = req.body.nom;
     if (req.body.prenom) medecinDataToUpdate.prenom = req.body.prenom;
-    if (req.body.specialisationId)
-      medecinDataToUpdate.specialisationId = req.body.specialisationId;
+    if (req.body.specialisation)
+      medecinDataToUpdate.specialisation = req.body.specialisation;
     if (req.body.email) medecinDataToUpdate.email = req.body.email;
     if (req.body.telephone) medecinDataToUpdate.telephone = req.body.telephone;
     if (req.body.adresse) medecinDataToUpdate.adresse = req.body.adresse;

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const availableSchema = mongoose.Schema({
+const availableSchema = new mongoose.Schema({
   jour: {
     type: String,
   },
@@ -21,6 +21,6 @@ const availableSchema = mongoose.Schema({
   ],
 });
 
-const Availability = mongoose.model('Availability',availableSchema);
+const Available = mongoose.model("Availability", availableSchema);
 
-module.exports = Availability;
+module.exports = Available;

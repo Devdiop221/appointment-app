@@ -16,6 +16,9 @@ router.post("/", UserController.create);
 // update a user by id
 router.put("/:id", UserController.update);
 
+// login user
+router.patch('/', UserController.loginUser);
+
 
 
 // delete a user by id
