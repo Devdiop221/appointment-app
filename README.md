@@ -1,5 +1,3 @@
-Bien sûr ! Voici un exemple de README pour démarrer un projet avec Express, MongoDB et Swagger :
-
 # Appointment App avec Express, MongoDB et Swagger
 
 Ce projet est un examen de fin de module pour une app de pointage a laquelle on a des utilsateurs , des medecins , des services, des pointages et les des disponibilités.
