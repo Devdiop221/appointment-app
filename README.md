@@ -17,7 +17,7 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 1. Clonez ce dépôt sur votre machine :
 
    ```bash
-   git clone <https://github.com/Devdiop221/appointment-app>
+   git clone https://github.com/Devdiop221/appointment-app
    ```
 
 2. Accédez au répertoire du projet :
